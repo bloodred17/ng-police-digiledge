@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { DummyThievesService } from '../services/dummy-thieves.service';
 import { ScrollEvent } from 'ngx-scroll-event';
 import { EventEmitter } from 'events';
+import { SearchService } from '../services/search.service';
+import { ThievesService } from '../services/thieves.service';
+import { DataInjectorService } from '../services/data-injector.service';
 
 @Component({
   selector: 'app-remove-thieves',
@@ -9,18 +12,24 @@ import { EventEmitter } from 'events';
   styleUrls: ['./remove-thieves.component.css']
 })
 export class RemoveThievesComponent implements OnInit {
-  
+  searchParam: string = '';
+  filteredThieves = [];
   thieves = [];
   error: any = null;
   btn_visible: boolean = false;
 
   constructor(
-    private dummyData: DummyThievesService,
+    private searchService: SearchService,
+    private thievesService: ThievesService,
+    private dataInjector: DataInjectorService,
     private elRef: ElementRef
   ) { }
 
   ngOnInit() {
-    this.thieves = this.dummyData.getData();
+    // this.thieves = this.dummyData.getData();
+    this.thievesSubscriber();
+    this.filteredThieves = this.searchService.searchFilter(this.searchParam, this.thieves);
+    this.onSearch(this.elRef.nativeElement.firstElementChild.value);
   }
 
   public handleScroll(event: ScrollEvent){
@@ -32,7 +41,9 @@ export class RemoveThievesComponent implements OnInit {
   }
 
   onRemove(){
+    // const row = this.elRef.nativeElement.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
     const row = this.elRef.nativeElement;
+    // console.log(row);
     const cards = row.children;
     // console.log(cards);
     //Get all the elements
@@ -45,12 +56,40 @@ export class RemoveThievesComponent implements OnInit {
       // console.log(inp);
       return inp.checked;
     });
+    console.log(toRemove_arr);
     //Remove the marked cards
     // console.log(toRemove_arr);
-    toRemove_arr.forEach((card) => {
-      const name = card.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
-      // console.log(name.innerText);
-      this.dummyData.removeData(name.innerText);
+    // toRemove_arr.forEach((card) => {
+    //   const name = card.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
+    //   console.log(name.innerText);
+      // this.dummyData.removeData(name.innerText);
+      //REMOVE DATA HERE
+    // });
+  }
+
+  onSearch(searchbar){
+    // console.log(searchbar.value);
+    this.searchParam = searchbar.value;
+    // console.log(this.searchParam);
+    this.searchService.giveSearchParam(this.searchParam);
+    this.filteredThieves = this.searchService.searchFilter(this.searchParam, this.thieves);
+  }
+
+  onClear(searchbar){
+    searchbar.value = '';
+    this.onSearch(searchbar);
+    // console.log(this.thieves);
+  }
+
+  onRefresh(searchbar){
+    this.onSearch(searchbar);
+  }
+
+  thievesSubscriber(){
+    this.thievesService.fetchThievesFromApi().subscribe(responseData => {
+      this.thieves = responseData;
+    }, error => {
+      this.error = error.message;
     });
   }
 }

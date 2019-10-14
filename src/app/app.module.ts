@@ -13,6 +13,8 @@ import { RemoveThievesComponent } from './remove-thieves/remove-thieves.componen
 import { ThiefDetailsComponent } from './render-box/thief-details/thief-details.component';
 import { GendertostringPipe } from './pipes/gendertostring.pipe';
 import { ConvictiontostringPipe } from './pipes/convictiontostring.pipe';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { ConvictiontostringPipe } from './pipes/convictiontostring.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ScrollEventModule,
   ],
   providers: [],

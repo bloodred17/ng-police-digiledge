@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DummyThievesService } from 'src/app/services/dummy-thieves.service';
 import { Gender } from 'src/app/interfaces/gender';
 import { NgForm } from '@angular/forms';
+import { ThievesService } from 'src/app/services/thieves.service';
 
 @Component({
   selector: 'app-thief-details',
@@ -20,13 +21,19 @@ export class ThiefDetailsComponent implements OnInit {
   genders: Gender[] = [Gender.male, Gender.female];
   convictionStatus: boolean[] = [true, false];
   validity: boolean = undefined;
+  error: any = null;
 
   constructor(
     private route: ActivatedRoute,
-    private dummyData: DummyThievesService
+    private dummyData: DummyThievesService,
+    private theivesService: ThievesService
     ) { }
 
   ngOnInit() {
+    //Get the list of thieves
+    // this.thieves = this.dummyData.getData();
+    this.thievesSubscriber();
+
     this.displayForms = false;
     //Get id from the url
     this.id = this.route.snapshot.params['id'];
@@ -36,9 +43,9 @@ export class ThiefDetailsComponent implements OnInit {
       this.route.params.subscribe((params: Router) => {
         this.id = params['id'];
       });
-    }
-    //Get the list of thieves
-    this.thieves = this.dummyData.getData();
+    } 
+    console.log(this.id);
+    console.log(this.thieves);
     //Get the thief from the list using the id
     this.selectedThief = this.thieves.find((thief: Thief) => {
       if(thief.id === this.id){
@@ -61,6 +68,24 @@ export class ThiefDetailsComponent implements OnInit {
         this.dummyData.updateData(key, values[key]);
       }
     }
+  }
+
+  onRefresh(){
+    //Get the thief from the list using the id
+    this.selectedThief = this.thieves.find((thief: Thief) => {
+      if(thief.id === this.id){
+        return thief;
+      }
+    });
+    console.log(this.selectedThief);
+  }
+
+  thievesSubscriber(){
+    this.theivesService.fetchThievesFromApi().subscribe(responseData => {
+      this.thieves = responseData;
+    }, error => {
+      this.error = error.message;
+    });
   }
 
 }
