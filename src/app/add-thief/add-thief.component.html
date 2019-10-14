@@ -1,0 +1,90 @@
+<div class="container">
+    <h1>Enter Thief Details: </h1>
+    <form (ngSubmit)="onSubmit()" #f="ngForm" >
+        <div class="form-group"
+            id="name"
+        >
+            <label for="name">Name</label>
+            <input type="text" class="form-control" ngModel required name="name">
+        </div>
+
+        <div
+            id="address" 
+            ngModelGroup="addressData"
+            > 
+            <!-- Address: -->
+            <div class="form-group">
+                <label for="house">House</label>
+                <input type="text" class="form-control" ngModel required name="house">
+            </div>
+            <div class="form-group">
+                <label for="street">Street</label>
+                <input type="text" class="form-control" ngModel required name="street">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" ngModel required name="city">
+            </div>
+            <div class="form-group">
+                <label for="Landmark">Landmark</label>
+                <input type="text" class="form-control" ngModel required name="landmark">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" ngModel required name="state">
+            </div>
+            <div class="form-group">
+                <label for="pocode">Pin Code</label>
+                <input type="text" class="form-control" ngModel required name="pocode">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" ngModel required name="country">
+            </div>
+            
+        </div>
+        
+        <div class="form-group">
+            <label for="dob">Date of birth</label>
+            <input type="date" class="form-control" ngModel required name="dob">
+        </div>
+
+        <p> Gender </p>
+        <div 
+            class="radio"
+            *ngFor="let sex of genders"
+        >
+            <label>
+                <input 
+                type="radio"
+                name="gender"
+                ngModel
+                [value]="sex"
+                required
+                >
+                <span *ngIf="sex === 0"> Male </span>
+                <span *ngIf="sex === 1"> Female </span>
+            </label>
+        </div>
+        
+        <p> Conviction Status </p>
+        <div 
+            class="radio"
+            *ngFor="let status of convictionStatus"
+        >
+            <label>
+                <input 
+                type="radio"
+                name="conviction"
+                ngModel
+                [value]="status"
+                required
+                >
+                {{status}}
+            </label>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>

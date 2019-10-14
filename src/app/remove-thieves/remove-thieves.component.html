@@ -1,0 +1,28 @@
+
+<div class="col-12 mt-3"
+*ngFor="let thief of thieves"
+>
+    <div class="card" 
+        style="border: 2px solid blueviolet"  
+    >
+        <div class="card-horizontal">
+            <div class="img-square-wrapper">
+                <img src="http://via.placeholder.com/300x180" alt="placeholder">
+            </div>
+            <div class="card-body">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1"></label>
+                </div>
+                <h4 class="card-title"> {{ thief.name }} </h4>
+                <p class="card-text"> {{ thief.addresses[0].city }} </p>
+                        
+            </div>
+        </div>
+        <!-- <div class="card-footer">
+            <small class="text-muted"> Last updated 3 mins ago </small>
+        </div> -->
+    </div>
+</div>
+
+<button class="btn btn-warning" (click)="onRemove()"> Apply </button>

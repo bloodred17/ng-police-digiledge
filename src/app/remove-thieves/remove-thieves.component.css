@@ -1,0 +1,25 @@
+
+.btn-invisible {
+    display: none;
+}
+
+.btn-size{
+    font-size: 2.5rem;
+}
+
+@media(max-width: 575px){
+    .btn-size{
+        font-size: 4.5rem;
+    }
+    
+    .position{
+        bottom: 4rem;
+        right:  4rem;
+    }
+}
+
+
+.form-check{
+    position: absolute;
+    right: 3rem;
+}

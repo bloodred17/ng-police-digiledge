@@ -1,0 +1,31 @@
+<!-- <div class="container-fluid render-box"
+    style="border: 2px solid red"
+> -->
+<input type="text" #search>
+<button type="button" class="btn btn-dark" (click)="onSearch(search)">Search</button>
+    <div class="row">
+        <div class="col-12 mt-3"
+        *ngFor="let thief of filteredThieves"
+        >
+            <div class="card" 
+                style="border: 2px solid blueviolet"    
+                [routerLink]="['/thief', thief.id]" 
+                routerLinkActive="router-link-active"   
+                >
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img src="http://via.placeholder.com/300x180" alt="placeholder">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"> {{ thief.name }} </h4>
+                        <p class="card-text"> {{ thief.addresses[0].city }} </p>
+                    </div>
+                    
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"> Last updated 3 mins ago </small>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
