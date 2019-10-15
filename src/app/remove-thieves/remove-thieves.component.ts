@@ -29,7 +29,6 @@ export class RemoveThievesComponent implements OnInit {
     // this.thieves = this.dummyData.getData();
     this.thievesSubscriber();
     this.filteredThieves = this.searchService.searchFilter(this.searchParam, this.thieves);
-    this.onSearch(this.elRef.nativeElement.firstElementChild.value);
   }
 
   public handleScroll(event: ScrollEvent){
@@ -42,47 +41,28 @@ export class RemoveThievesComponent implements OnInit {
 
   onRemove(){
     // const row = this.elRef.nativeElement.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
-    const row = this.elRef.nativeElement;
+    const row = this.elRef.nativeElement.firstElementChild.nextElementSibling;
     // console.log(row);
     const cards = row.children;
     // console.log(cards);
     //Get all the elements
     const cards_arr = [...cards];
-    //Remove the last element (i.e apply button)
-    cards_arr.splice(-1,1);
     //Filter out the marked cards
     const toRemove_arr = cards_arr.filter((card) => {
       const inp = card.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.firstElementChild;
       // console.log(inp);
       return inp.checked;
     });
-    console.log(toRemove_arr);
-    //Remove the marked cards
     // console.log(toRemove_arr);
-    // toRemove_arr.forEach((card) => {
-    //   const name = card.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
-    //   console.log(name.innerText);
+    //Remove the marked cards
+    toRemove_arr.forEach((card) => {
+      const _id = card.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling;
+      console.log(_id.innerText);
       // this.dummyData.removeData(name.innerText);
-      //REMOVE DATA HERE
-    // });
-  }
-
-  onSearch(searchbar){
-    // console.log(searchbar.value);
-    this.searchParam = searchbar.value;
-    // console.log(this.searchParam);
-    this.searchService.giveSearchParam(this.searchParam);
-    this.filteredThieves = this.searchService.searchFilter(this.searchParam, this.thieves);
-  }
-
-  onClear(searchbar){
-    searchbar.value = '';
-    this.onSearch(searchbar);
-    // console.log(this.thieves);
-  }
-
-  onRefresh(searchbar){
-    this.onSearch(searchbar);
+      // REMOVE DATA HERE
+      this.dataInjector.removeThievesFromThieves(_id);
+      this.thievesSubscriber();
+    });
   }
 
   thievesSubscriber(){
@@ -91,5 +71,9 @@ export class RemoveThievesComponent implements OnInit {
     }, error => {
       this.error = error.message;
     });
+  }
+
+  onRefresh(){
+      
   }
 }

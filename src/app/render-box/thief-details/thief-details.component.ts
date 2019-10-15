@@ -6,6 +6,7 @@ import { DummyThievesService } from 'src/app/services/dummy-thieves.service';
 import { Gender } from 'src/app/interfaces/gender';
 import { NgForm } from '@angular/forms';
 import { ThievesService } from 'src/app/services/thieves.service';
+import { DataInjectorService } from 'src/app/services/data-injector.service';
 
 @Component({
   selector: 'app-thief-details',
@@ -26,14 +27,16 @@ export class ThiefDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dummyData: DummyThievesService,
-    private theivesService: ThievesService
+    private theivesService: ThievesService,
+    private dataInjector: DataInjectorService
     ) { }
 
   ngOnInit() {
     //Get the list of thieves
     // this.thieves = this.dummyData.getData();
     this.thievesSubscriber();
-
+    this.dataInjector.getThievesFromThieves();
+    this.thieves = this.dataInjector.injectThieves();
     this.displayForms = false;
     //Get id from the url
     this.id = this.route.snapshot.params['id'];
@@ -47,12 +50,12 @@ export class ThiefDetailsComponent implements OnInit {
     console.log(this.id);
     console.log(this.thieves);
     //Get the thief from the list using the id
-    this.selectedThief = this.thieves.find((thief: Thief) => {
-      if(thief.id === this.id){
-        return thief;
-      }
-    });
-    console.log(this.selectedThief);
+    // this.selectedThief = this.thieves.find((thief: Thief) => {
+    //   if(thief.id === this.id){
+    //     return thief;
+    //   }
+    // });
+    // console.log(this.selectedThief);
   }
 
   onEdit(){
@@ -65,12 +68,13 @@ export class ThiefDetailsComponent implements OnInit {
     //update values by iterating on the form value object
     for(let key in values){
       if(values[key] !== ''){
-        this.dummyData.updateData(key, values[key]);
+        // this.dummyData.updateData(key, values[key]);
       }
     }
   }
 
   onRefresh(){
+    console.log(this.thieves);
     //Get the thief from the list using the id
     this.selectedThief = this.thieves.find((thief: Thief) => {
       if(thief.id === this.id){

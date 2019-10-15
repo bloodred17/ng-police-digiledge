@@ -1,18 +1,26 @@
 main {
     width: 98vw;
-    border: 2px solid brown;
+    /* border: 2px solid brown; */
     padding: 0;
 }
 
 .render-box {
     padding: 5% 10%;
     border-radius: 50px;
-    border: 2px solid darkmagenta;
-    background-color: mediumslateblue;
+    background-color: #74EBD5;
+    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+    box-shadow: 2px 5px 5px #aaaaaa;
+    margin-bottom: 10rem;
 }
 
 
 .container {
     padding: 0 10%;
+}
+
+.buttons-wrapper {
     /* border: 1px solid coral; */
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
 }

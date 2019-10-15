@@ -4,15 +4,18 @@
       <a [routerLink]="['']" routerLinkActive="router-link-active"  >
 
         <h1 class="display-1 d-inline-block">
-          Thain Thain Database
+          Police Database
         </h1>
       </a>
     </div>
   </div>
 
-  <button class="btn btn-primary" [routerLink]="['add']" routerLinkActive="router-link-active"  > + Add </button>
-  <button class="btn btn-danger" [routerLink]="['remove']" routerLinkActive="router-link-active"  > - Remove </button>
-  <button class="btn btn-warning" [routerLink]="['showall']" routerLinkActive="router-link-active" > * Show All </button>
+  
+  <div class="buttons-wrapper">
+    <button class="btn btn-primary" [routerLink]="['add']" routerLinkActive="router-link-active"  > + Add </button>
+    <button class="btn btn-danger" [routerLink]="['remove']" routerLinkActive="router-link-active"  > - Remove </button>
+    <button class="btn btn-warning" [routerLink]="['showall']" routerLinkActive="router-link-active" > * Show All </button>
+  </div>
 
   <!-- <app-render-box></app-render-box>   -->
   <!-- <app-add-thief></app-add-thief> -->
@@ -21,7 +24,6 @@
   <div class="container">
 
     <div class="container-fluid render-box"
-    style="border: 2px solid red"
     >
     
       <router-outlet></router-outlet>

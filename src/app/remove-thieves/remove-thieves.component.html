@@ -1,32 +1,39 @@
 <!-- <input type="text" #search>
 <button type="button" class="btn btn-dark" (click)="onSearch(search)">Search</button>
-<button type="button" class="btn btn-danger" (click)="onClear(search)">Clear</button>
-<button type="button" class="btn btn-success" (click)="onRefresh(search)">Refresh</button> -->
+<button type="button" class="btn btn-danger" (click)="onClear(search)">Clear</button> -->
+<div class="buttons-wrapper">
+    <button type="button" class="btn btn-success" (click)="onRefresh()">Refresh</button>
+</div>
+<div class="row">
 
-<div class="col-12 mt-3"
+    <div class="col-12 mt-3"
     *ngFor="let thief of thieves"
->
-    <div class="card" 
-        style="border: 2px solid blueviolet"  
     >
-        <div class="card-horizontal">
-            <div class="img-square-wrapper">
-                <img src="http://via.placeholder.com/300x180" alt="placeholder">
-            </div>
-            <div class="card-body">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1"></label>
+        <div class="card" 
+        >
+            <div class="card-horizontal">
+                <div class="img-square-wrapper">
+                    <img src="http://via.placeholder.com/300x180" alt="placeholder">
                 </div>
-                <h4 class="card-title"> {{ thief.name }} </h4>
-                <p class="card-text"> {{ thief.addresses[0].city }} </p>
-                        
+                <div class="card-body">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1"></label>
+                    </div>
+                    <h4 class="identifier"> {{ thief._id }} </h4>
+                    <h4 class="card-title"> {{ thief.name }} </h4>
+                    <p class="card-text"> {{ thief.addresses[0].city }} </p>
+                    
+                </div>
             </div>
+    <!-- <div class="card-footer">
+        <small class="text-muted"> Last updated 3 mins ago </small>
+    </div> -->
         </div>
-        <!-- <div class="card-footer">
-            <small class="text-muted"> Last updated 3 mins ago </small>
-        </div> -->
     </div>
 </div>
 
-<button class="btn btn-warning" (click)="onRemove()"> Apply </button>
+<div class="buttons-wrapper">
+
+    <button class="btn btn-warning" (click)="onRemove()"> Apply </button>
+</div>

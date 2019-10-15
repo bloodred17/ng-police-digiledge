@@ -23,3 +23,7 @@
     position: absolute;
     right: 3rem;
 }
+
+.identifier{
+    display: none;
+}
