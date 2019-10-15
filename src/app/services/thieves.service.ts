@@ -43,11 +43,12 @@ export class ThievesService {
     const url = 'http://localhost:3000/api/thieves';
     return this.http.post(url, thief, {
       observe: 'response'
-    }).subscribe(responseData => {
-      console.log(responseData);
-    }, error => {
-      console.log(error);
     });
+    // .subscribe(responseData => {
+    //   console.log(responseData);
+    // }, error => {
+    //   console.log(error);
+    // });
   }
 
   putThiefToApi(data, id){

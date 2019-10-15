@@ -14,6 +14,7 @@ import { ThiefDetailsComponent } from './render-box/thief-details/thief-details.
 import { GendertostringPipe } from './pipes/gendertostring.pipe';
 import { ConvictiontostringPipe } from './pipes/convictiontostring.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { ButtonforupdatePipe } from './pipes/buttonforupdate.pipe';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     RemoveThievesComponent,
     ThiefDetailsComponent,
     GendertostringPipe,
-    ConvictiontostringPipe
+    ConvictiontostringPipe,
+    ButtonforupdatePipe
   ],
   imports: [
     BrowserModule,

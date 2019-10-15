@@ -13,6 +13,7 @@ import { ThievesService } from '../services/thieves.service';
 })
 export class AddThiefComponent implements OnInit {
   @ViewChild('f', {static: false}) addThiefForm: NgForm;
+  added: boolean = false;
   genders: Gender[] = [Gender.male, Gender.female];
   convictionStatus: boolean[] = [true, false];
   thief: Thief = {
@@ -44,7 +45,7 @@ export class AddThiefComponent implements OnInit {
     ) {
     }
     
-    onSubmit(){
+  onSubmit(){
     let thief: Thief;
     console.log(this.addThiefForm);
     const form = this.addThiefForm.form.value;
@@ -62,6 +63,21 @@ export class AddThiefComponent implements OnInit {
     this.thief.stateOfConviction = form.conviction;
     console.log(this.thief);
     // this.dummyData.addData(this.thief);
-    this.thievesService.postThiefToApi(this.thief);
+    this.thievesService.postThiefToApi(this.thief).subscribe(responseData => {
+      console.log(responseData);
+      if(responseData.ok){
+        this.added = true;
+      }else{
+        this.added = false;
+      }
+    }, error => {
+      console.log(error);
+      this.added = false;
+    });
+
   }
+
+  windowRefresh(): void {
+    window.location.reload();
+}
 }
