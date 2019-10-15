@@ -60,7 +60,7 @@ export class RemoveThievesComponent implements OnInit {
       console.log(_id.innerText);
       // this.dummyData.removeData(name.innerText);
       // REMOVE DATA HERE
-      this.dataInjector.removeThievesFromThieves(_id);
+      this.dataInjector.removeThievesFromThieves(_id.innerText);
       this.thievesSubscriber();
     });
   }

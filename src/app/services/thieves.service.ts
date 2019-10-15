@@ -23,8 +23,10 @@ export class ThievesService {
   }
 
   deleteThiefFromApi(_id: string){
-    // return this.http.delete(`http://http://localhost:3000/api/thieves/${_id}`, {
-    return this.http.delete(`http://localhost:3000/api/thieves/5da4263ff746ce4114c211b7`, {
+    const url = `http://localhost:3000/api/thieves/${_id}`;
+    console.log(url);
+    return this.http.delete(url, {
+    // return this.http.delete(`http://localhost:3000/api/thieves/5da4f05a2809745848f79ad5`, {
       responseType: 'json'
     }).pipe(
       catchError(errorRes => {
@@ -33,5 +35,15 @@ export class ThievesService {
     );
   }
 
+  postThiefToApi(thief: Thief){
+    const url = 'http://localhost:3000/api/thieves';
+    return this.http.post(url, thief, {
+      observe: 'response'
+    }).subscribe(responseData => {
+      console.log(responseData);
+    }, error => {
+      console.log(error);
+    });
+  }
 
 }

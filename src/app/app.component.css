@@ -18,9 +18,3 @@ main {
     padding: 0 10%;
 }
 
-.buttons-wrapper {
-    /* border: 1px solid coral; */
-    display: flex;
-    justify-content: center;
-    margin: 2rem auto;
-}

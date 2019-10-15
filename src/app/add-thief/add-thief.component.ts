@@ -4,6 +4,7 @@ import { Thief } from '../interfaces/thief';
 import { DummyThievesService } from '../services/dummy-thieves.service';
 import { v4 as uuid } from 'uuid';
 import { Gender } from '../interfaces/gender';
+import { ThievesService } from '../services/thieves.service';
 
 @Component({
   selector: 'app-add-thief',
@@ -36,6 +37,7 @@ export class AddThiefComponent implements OnInit {
   
   constructor(
     private dummyData: DummyThievesService,
+    private thievesService: ThievesService
     ) { }
     
     ngOnInit(
@@ -59,6 +61,7 @@ export class AddThiefComponent implements OnInit {
     this.thief.gender = form.gender;
     this.thief.stateOfConviction = form.conviction;
     console.log(this.thief);
-    this.dummyData.addData(this.thief);
+    // this.dummyData.addData(this.thief);
+    this.thievesService.postThiefToApi(this.thief);
   }
 }

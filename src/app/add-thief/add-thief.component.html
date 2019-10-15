@@ -9,7 +9,7 @@
         </div>
 
         <div
-            id="address" 
+            class="address" 
             ngModelGroup="addressData"
             > 
             <!-- Address: -->
@@ -44,47 +44,54 @@
             
         </div>
         
-        <div class="form-group">
+        <div class="form-group form-dob">
             <label for="dob">Date of birth</label>
             <input type="date" class="form-control" ngModel required name="dob">
         </div>
 
-        <p> Gender </p>
-        <div 
+        <div class="form-group">
+
+            <p> Gender </p>
+            <div 
             class="radio"
             *ngFor="let sex of genders"
-        >
-            <label>
-                <input 
-                type="radio"
-                name="gender"
-                ngModel
-                [value]="sex"
-                required
-                >
-                <span *ngIf="sex === 0"> Male </span>
-                <span *ngIf="sex === 1"> Female </span>
-            </label>
+            >
+                <label>
+                    <input 
+                    type="radio"
+                    name="gender"
+                    ngModel
+                    [value]="sex"
+                    required
+                    >
+                    <span *ngIf="sex === 0"> Male </span>
+                    <span *ngIf="sex === 1"> Female </span>
+                </label>
+            </div>
         </div>
         
-        <p> Conviction Status </p>
-        <div 
+        <div class="form-group">
+
+            <p> Conviction Status </p>
+            <div 
             class="radio"
             *ngFor="let status of convictionStatus"
-        >
-            <label>
-                <input 
-                type="radio"
-                name="conviction"
-                ngModel
-                [value]="status"
-                required
-                >
-                {{status}}
-            </label>
+            >
+                <label>
+                    <input 
+                    type="radio"
+                    name="conviction"
+                    ngModel
+                    [value]="status"
+                    required
+                    >
+                    {{status}}
+                </label>
+            </div>
         </div>
-        
-        <button type="submit" class="btn btn-success">Submit</button>
+        <div class="form-submit">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
 
     </form>
 </div>
