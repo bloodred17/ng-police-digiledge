@@ -65,12 +65,16 @@ export class ThiefDetailsComponent implements OnInit {
   onSubmit(form: NgForm){
     const values = form.form.value;
     console.log(values);
+    const data = {};
     //update values by iterating on the form value object
     for(let key in values){
       if(values[key] !== ''){
+        data[key] = values[key];
         // this.dummyData.updateData(key, values[key]);
       }
     }
+    console.log(data);
+    this.theivesService.putThiefToApi(data, this.selectedThief._id);
   }
 
   onRefresh(){

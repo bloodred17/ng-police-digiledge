@@ -15,6 +15,11 @@
 .card {
     border-radius: 5px;
     box-shadow: 1px 2px 5px rgba(0,0,0,0.38);
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(216,241,230,0.46) 0.1%, rgba(233,226,226,0.28) 90.1% );
+}
+.card-header{
+    background-image: radial-gradient( circle farthest-corner at -4% -12.9%,  rgba(74,98,110,1) 0.3%, rgba(30,33,48,1) 90.2% );
+    color: white;
 }
 
 .btn {

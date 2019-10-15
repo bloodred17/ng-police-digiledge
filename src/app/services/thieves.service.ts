@@ -22,17 +22,21 @@ export class ThievesService {
       );
   }
 
-  deleteThiefFromApi(_id: string){
-    const url = `http://localhost:3000/api/thieves/${_id}`;
+  deleteThiefFromApi(id: string){
+    // id = "5da4f05a2809745848f79ad5";
+    const url = 'http://localhost:3000/api/thieves/'+id;
     console.log(url);
     return this.http.delete(url, {
-    // return this.http.delete(`http://localhost:3000/api/thieves/5da4f05a2809745848f79ad5`, {
-      responseType: 'json'
+    // return this.http.delete(`http://localhost:3000/api/thieves/5da4f0692809745848f79ad6`, {
     }).pipe(
       catchError(errorRes => {
         return throwError(errorRes);
       })
-    );
+    ).subscribe(responseData => {
+      console.log(responseData);
+    }, error => {
+      console.log(error);
+    });
   }
 
   postThiefToApi(thief: Thief){
@@ -46,4 +50,15 @@ export class ThievesService {
     });
   }
 
+  putThiefToApi(data, id){
+    const url = 'http://localhost:3000/api/thieves/'+id;
+    // return this.http.post(url, data, {
+    return this.http.put('http://localhost:3000/api/thieves/5da5251810dc5150f8846269', data, {
+      observe: 'response'
+    }).subscribe(responseData => {
+      console.log(responseData);
+    }, error => {
+      console.log(error);
+    });
+  }
 }

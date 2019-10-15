@@ -26,12 +26,14 @@ export class DataInjectorService {
   }
 
   removeThievesFromThieves(identifier){
-    this.thievesService.deleteThiefFromApi(identifier).subscribe(responseData => {
-      console.log(responseData);
-      return responseData;
-    }, error => {
-      this.error = error.message;
-    });
-    return this.thieves;
+    this.thievesService.deleteThiefFromApi(identifier);
+  //   this.thievesService.deleteThiefFromApi(identifier)
+  //     .subscribe(responseData => {
+  //     console.log(responseData);
+  //     return responseData;
+  //   }, error => {
+  //     this.error = error.message;
+  //   });
+  //   return this.thieves;
   }
 }
