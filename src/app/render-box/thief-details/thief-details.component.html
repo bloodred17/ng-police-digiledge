@@ -104,7 +104,7 @@
 		<!-- Todo:: edit and add form for addresses -->
 
 		<div class="buttons mt-4 buttons-wrapper">
-			<button class="btn btn-info" (click)="onEdit()"> Edit </button>
+			<button class="btn btn-info" (click)="onEdit()" *ngIf="!displayForm"> Edit </button>
 		</div>
 
 	</div>

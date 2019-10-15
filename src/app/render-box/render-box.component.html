@@ -21,7 +21,9 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title display-4"> {{ thief.name }} </h4>
+                        <p class="card-text"> {{ thief.gender | gendertostring }} </p>
                         <p class="card-text"> {{ thief.addresses[0].city }} </p>
+                        <p class="card-text"> {{ thief.stateOfConviction | convictiontostring }} </p>
                     </div>
                     
                 </div>
