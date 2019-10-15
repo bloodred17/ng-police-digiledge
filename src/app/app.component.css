@@ -33,3 +33,7 @@ main {
     padding: 1rem 1.7rem;
     box-shadow: 1px 2px 7px rgba(128, 128, 128, 0.836);
 }
+
+h1 {
+    border-bottom: 3px solid rgb(110, 40, 160);
+}

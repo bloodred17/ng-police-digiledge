@@ -23,6 +23,7 @@ export class ThiefDetailsComponent implements OnInit {
   convictionStatus: boolean[] = [true, false];
   validity: boolean = undefined;
   error: any = null;
+  added: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +33,7 @@ export class ThiefDetailsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.added = false;
     //Get the list of thieves
     // this.thieves = this.dummyData.getData();
     this.thievesSubscriber();
@@ -74,10 +76,19 @@ export class ThiefDetailsComponent implements OnInit {
       }
     }
     console.log(data);
-    this.theivesService.putThiefToApi(data, this.selectedThief._id);
+    this.theivesService.putThiefToApi(data, this.selectedThief._id).subscribe(responseData => {
+      console.log(responseData);
+      this.added = true;
+    }, error => {
+      console.log(error);
+      this.added = false;
+    });
+    
+    this.thievesSubscriber();
   }
 
   onRefresh(){
+    this.thievesSubscriber();
     console.log(this.thieves);
     //Get the thief from the list using the id
     this.selectedThief = this.thieves.find((thief: Thief) => {
@@ -86,6 +97,7 @@ export class ThiefDetailsComponent implements OnInit {
       }
     });
     console.log(this.selectedThief);
+    this.added = false;
   }
 
   thievesSubscriber(){

@@ -56,10 +56,6 @@ export class ThievesService {
     // return this.http.post(url, data, {
     return this.http.put('http://localhost:3000/api/thieves/5da5251810dc5150f8846269', data, {
       observe: 'response'
-    }).subscribe(responseData => {
-      console.log(responseData);
-    }, error => {
-      console.log(error);
     });
   }
 }

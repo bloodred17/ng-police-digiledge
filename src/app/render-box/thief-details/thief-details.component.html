@@ -80,7 +80,11 @@
 					</div>
 				</div>
 				
-				<button type="submit" class="btn btn-success"> Update </button>
+				<button type="submit" class="btn btn-success" *ngIf="!this.added"> Update </button>
+
+				<div class="buttons-wrapper" *ngIf="this.added">
+					<p class="text-success">Collection is added to database document</p>
+				</div>
 			</form>
 		</div>
 
